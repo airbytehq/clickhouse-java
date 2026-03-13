@@ -545,10 +545,6 @@ public class ArrayResultSetTest {
 
     @Test
     void testNextIterationCount() throws SQLException {
-        // Verify that next() returns true exactly N times for an N-element array,
-        // and that all elements are readable without error. This is a regression test
-        // for an off-by-one bug where next() returned true one extra time past the
-        // end of the array, causing a "No current row" SQLException on getString(2).
         Integer[] array = {10, 20, 30};
         ArrayResultSet rs = new ArrayResultSet(array, ClickHouseColumn.parse("v Array(Int32)").get(0));
 
