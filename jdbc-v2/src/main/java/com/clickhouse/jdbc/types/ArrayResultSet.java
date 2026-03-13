@@ -76,7 +76,7 @@ public class ArrayResultSet implements ResultSet {
 
     @Override
     public boolean next() throws SQLException {
-        if (pos == length || length == 0) {
+        if (pos >= length - 1 || length == 0) {
             return false;
         }
         pos++;
