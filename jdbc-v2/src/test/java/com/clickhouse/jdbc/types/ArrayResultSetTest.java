@@ -558,6 +558,15 @@ public class ArrayResultSetTest {
     }
 
     @Test
+    void testNextEmptyArray() throws SQLException {
+        Integer[] array = {};
+        ArrayResultSet rs = new ArrayResultSet(array, ClickHouseColumn.parse("v Array(Int32)").get(0));
+
+        assertFalse(rs.next(), "next() should return false immediately for an empty array");
+        assertFalse(rs.next(), "next() should keep returning false on subsequent calls");
+    }
+
+    @Test
     void testNextSingleElement() throws SQLException {
         Integer[] array = {42};
         ArrayResultSet rs = new ArrayResultSet(array, ClickHouseColumn.parse("v Array(Int32)").get(0));
